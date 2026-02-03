@@ -36,6 +36,8 @@ if ($method === 'POST' && $path === '/api/safes') {
     // Daten aus JSON holen und normalisieren
     $safeCode = isset($data['safe_code']) ? trim((string)$data['safe_code']) : '';
     $safeLocation = isset($data['safe_location']) ? trim((string)$data['safe_location']) : '';
+    $doorState = isset($data['door_state']) ? trim((string)$data['door_state']) : '';
+    $safeStatus = isset($data['safe_status']) ? trim((string)$data['safe_status']) : '';
     $cashLevel = $data['cash_level'] ?? null;
 
     // Validierung sammeln und am ene entscheiden
@@ -45,6 +47,12 @@ if ($method === 'POST' && $path === '/api/safes') {
     }
     if ($safeLocation === '') {
         $errors[] = 'safe_location ist erforderlich';
+    }
+    if ($doorState === '') {
+        $errors[] = 'door_state ist erforderlich';
+    }
+    if ($safeStatus === '') {
+        $errors[] = 'safe_status ist erforderlich';
     }
 
     // sicherstellen das cash_level ein numerischerwert ist und wert auf zwei nachkommastellen normalisieren
@@ -75,14 +83,16 @@ if ($method === 'POST' && $path === '/api/safes') {
     try {
         $pdo = (new Database())->connect();
 
-        $sql = "INSERT INTO smartsafes (safe_code, safe_location, cash_level, updated_at)
-            VALUES (:safe_code, :safe_location, :cash_level, GETDATE())";
+        $sql = "INSERT INTO smartsafes (safe_code, safe_location, cash_level, door_state, safe_status, updated_at)
+            VALUES (:safe_code, :safe_location, :cash_level, :door_state, :safe_status, GETDATE())";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             ':safe_code' => $safeCode,
             ':safe_location' => $safeLocation,
             ':cash_level' => $cashLevel,
+            ':door_state' => $doorState,
+            ':safe_status' => $safeStatus
         ]);
 
         // Mit Erfolg antworten ,201 steht für Created
@@ -93,6 +103,8 @@ if ($method === 'POST' && $path === '/api/safes') {
                 'safe_code' => $safeCode,
                 'safe_location' => $safeLocation,
                 'cash_level' => $cashLevel,
+                'door_state' => $doorState,
+                'safe_status' => $safeStatus
             ]
         ]);
         exit;
