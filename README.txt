@@ -1,9 +1,27 @@
-# SmartSafe API 
+SmartSafe API – Mini-Projekt
 
+Dieses Projekt ist eine kleine REST-API in PHP zur Verwaltung von SmartSafes.
 
-## Projektidee
+Technik:
+- PHP 8 (Laragon)
+- Microsoft SQL Server (PDO sqlsrv)
+- REST API (JSON)
+- Getestet mit Postman
 
-Die API simuliert ein sehr einfaches **SmartSafe- / Bargeld-Monitoring-System**.
+Aktueller Entwicklungsstand:
+- Health-Endpoint zum Prüfen, ob die API läuft
+- POST /api/safes zum Anlegen eines SmartSafes
+- Validierung der Eingabedaten
+- Speicherung in einer MSSQL-Datenbank
+- Schutz vor SQL-Injection durch Prepared Statements
+- Fehlerbehandlung mit sinnvollen HTTP-Statuscodes
+- Validierung aller Pflichtfelder
+- Unterstützung von Geldbeträgen mit zwei Nachkommastellen (DECIMAL)
+- UNIQUE-Constraint auf safe_code
+- Rückgabe von HTTP 409 bei doppeltem safe_code
+- Saubere JSON-Fehlermeldungen
+
+Ziel:
 
 Ein SmartSafe kann z.B. darstellen:
 - einen Tresor
@@ -15,12 +33,3 @@ Langfristig könnte das System:
 - Bargeldbestände speichern
 - Events (Einzahlung, Entnahme, Warnungen) verarbeiten
 
-Aktuell liegt der Fokus klar auf Architektur und Grundlagen, nicht auf Funktionsumfang.
-
-## Tech-Stack
-
-- PHP (nativ)
-- MSSQL (SQL Server Express)
-- PDO (pdo_sqlsrv)
-- Apache (über Laragon)
-- Git / GitHub
