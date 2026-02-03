@@ -25,7 +25,7 @@ Ziel:
 
 Ein SmartSafe kann z.B. darstellen:
 - einen Tresor
-- einen Geldautomaten
+- einen Geldautomaten 
 - oder ein Bargeldsystem in einer Filiale
 
 Langfristig könnte das System:
