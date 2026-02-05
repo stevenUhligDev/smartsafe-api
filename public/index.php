@@ -76,24 +76,16 @@ if ($method === 'POST' && $path === '/api/safes') {
         exit;
     }
 
-    // temporärer Datenbankzugriff im Router
-    require __DIR__ . '/../src/Config/Database.php';
-
-    // Verbindung + insert mit prepare-statements und mit try/catch
+    // Verbindung + Aufruf des SafeRepositorys
     try {
+        require __DIR__ . '/../src/Config/Database.php';
         $pdo = (new Database())->connect();
 
-        $sql = "INSERT INTO smartsafes (safe_code, safe_location, cash_level, door_state, safe_status, updated_at)
-            VALUES (:safe_code, :safe_location, :cash_level, :door_state, :safe_status, GETDATE())";
+        require __DIR__ . '/../src/Repository/SafeRepository.php';
+        $repo = new SafeRepository($pdo);
+        $repo->create($safeCode,$safeLocation,$cashLevel,$doorState,$safeStatus);
 
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([
-            ':safe_code' => $safeCode,
-            ':safe_location' => $safeLocation,
-            ':cash_level' => $cashLevel,
-            ':door_state' => $doorState,
-            ':safe_status' => $safeStatus
-        ]);
+        
 
         // Mit Erfolg antworten ,201 steht für Created
         http_response_code(201);

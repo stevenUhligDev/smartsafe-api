@@ -9,6 +9,23 @@ Technik:
 - Getestet mit Postman
 
 Aktueller Entwicklungsstand:
+
+- Neuer Stand -05-02-2026 (Repository-Pattern):
+
+- Der direkte SQL-Zugriff wurde aus der index.php ausgelagert.
+- Datenbankzugriffe erfolgen jetzt über ein eigenes Repository (SafeRepository).
+
+- Vorteile:
+- Trennung von HTTP-Logik und Datenbank-Logik
+- Bessere Wartbarkeit
+- Vorbereitung auf eine saubere MVC-Struktur
+- Zentrale Stelle für SQL-Zugriffe
+
+Die index.php kümmert sich nur noch um:
+- Routing
+- Validierung
+- HTTP-Responses
+
 - Health-Endpoint zum Prüfen, ob die API läuft
 - POST /api/safes zum Anlegen eines SmartSafes
 - Validierung der Eingabedaten
