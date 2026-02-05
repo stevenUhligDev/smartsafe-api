@@ -9,8 +9,20 @@ Technik:
 - Getestet mit Postman
 
 Aktueller Entwicklungsstand:
+- Neuer Stand -05-02-2026 Teil 2:
 
-- Neuer Stand -05-02-2026 (Repository-Pattern):
+- Die Validierung der Eingabedaten wurde aus der index.php in ein eigenes Model
+- (SmartSafe) ausgelagert.
+
+- Das Model ist nun verantwortlich für:
+  - Erstellen eines SmartSafe-Objekts aus dem Request
+  - Validierung aller Pflichtfelder und Werte
+
+- Zusätzlich wurde ein Autoloading mit Composer nach PSR-4 eingerichtet,
+- sodass Klassen automatisch geladen werden und keine manuellen require-Aufrufe
+- mehr nötig sind.
+
+- Neuer Stand -05-02-2026 Teil 1:
 
 - Der direkte SQL-Zugriff wurde aus der index.php ausgelagert.
 - Datenbankzugriffe erfolgen jetzt über ein eigenes Repository (SafeRepository).
@@ -21,10 +33,10 @@ Aktueller Entwicklungsstand:
 - Vorbereitung auf eine saubere MVC-Struktur
 - Zentrale Stelle für SQL-Zugriffe
 
-Die index.php kümmert sich nur noch um:
-- Routing
-- Validierung
-- HTTP-Responses
+- Die index.php kümmert sich nur noch um:
+  - Routing
+  - Validierung
+  - HTTP-Responses
 
 - Health-Endpoint zum Prüfen, ob die API läuft
 - POST /api/safes zum Anlegen eines SmartSafes
@@ -38,15 +50,15 @@ Die index.php kümmert sich nur noch um:
 - Rückgabe von HTTP 409 bei doppeltem safe_code
 - Saubere JSON-Fehlermeldungen
 
-Ziel:
+- Ziel:
 
-Ein SmartSafe kann z.B. darstellen:
-- einen Tresor
-- einen Geldautomaten 
-- oder ein Bargeldsystem in einer Filiale
+- Ein SmartSafe kann z.B. darstellen:
+  - einen Tresor
+  - einen Geldautomaten 
+  - oder ein Bargeldsystem in einer Filiale
 
-Langfristig könnte das System:
-- SmartSafes verwalten
-- Bargeldbestände speichern
-- Events (Einzahlung, Entnahme, Warnungen) verarbeiten
+- Langfristig könnte das System:
+  - SmartSafes verwalten
+  - Bargeldbestände speichern
+  - Events (Einzahlung, Entnahme, Warnungen) verarbeiten
 

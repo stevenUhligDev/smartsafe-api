@@ -1,4 +1,9 @@
 <?php
+declare(strict_types=1);
+
+namespace Steve\SmartsafeApi\Repository;
+use PDO;
+use PDOException;
 
 final class SafeRepository
 {
@@ -14,7 +19,7 @@ final class SafeRepository
         try {
             
 
-            $sql = "INSERT INTO smartsafes (safe_code, safe_location, cash_level, door_state, safe_status, updated_at)
+            $sql = "INSERT INTO dbo.smartsafes (safe_code, safe_location, cash_level, door_state, safe_status, updated_at)
             VALUES (:safe_code, :safe_location, :cash_level, :door_state, :safe_status, GETDATE())";
 
             $stmt = $this->pdo->prepare($sql);

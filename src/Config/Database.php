@@ -1,7 +1,10 @@
 <?php
-
-
 declare(strict_types=1);
+
+namespace Steve\SmartsafeApi\Config;
+use PDO;
+use Throwable;
+
 final class Database
 {
     

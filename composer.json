@@ -1,0 +1,15 @@
+{
+    "name": "steve/smartsafe-api",
+    "autoload": {
+        "psr-4": {
+            "Steve\\SmartsafeApi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Steven Uhlig",
+            "email": "177617514+stevenUhligDev@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
