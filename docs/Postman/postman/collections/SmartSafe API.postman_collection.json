@@ -1,0 +1,66 @@
+{
+  "info": {
+    "_postman_id": "21b73eac-e58c-4983-a2c5-0d4d2025abeb",
+    "name": "SmartSafe API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "id": "aa562175-a86f-470f-99e8-16b44e97cf26",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://smartsafe-api.test/api/health",
+          "protocol": "http",
+          "host": [
+            "smartsafe-api",
+            "test"
+          ],
+          "path": [
+            "api",
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create SmartSafe",
+      "id": "bbd83ab9-a8c8-4f89-afd3-072def7a3759",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"safe_code\": \"SAFE-002\",\r\n    \"safe_location\": \"Filiale Berlin\",\r\n    \"cash_level\": 15000.00,\r\n    \"door_state\": \"CLOSED\",\r\n    \"safe_status\": \"OK\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://smartsafe-api.test/api/safes",
+          "protocol": "http",
+          "host": [
+            "smartsafe-api",
+            "test"
+          ],
+          "path": [
+            "api",
+            "safes"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
